@@ -1,0 +1,12 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+setwd("C:/Users/Henry Shugart/Desktop/STOR 565/archive/")
+birds <- read_csv("birds.csv",show_col_types = FALSE)
+birds$data_set = birds[,4]
+n_birds = birds %>% filter(data_set == "train") %>% group_by(labels) %>% summarize(n = n()) %>% arrange(desc(n))
+birds_train = birds %>% filter(data_set == "train")
+``````
