@@ -6,7 +6,7 @@ output: html_notebook
 ```{r}
 # Set working directory for different users
 setwd("C:/Users/cam391/Documents/GitHub/STOR-565-Group-Project/") # Cam
-setwd("C:/Users/cam391/Documents/GitHub/STOR-565-Group-Project/") # Henry
+setwd("C:/Users/Henry Shugart/Documents/GitHub/STOR-565-Group-Project/") # Henry
 setwd("C:/Users/Joe/Documents/GitHub/STOR-565-Group-Project/") # Johanna
 
 birds <- read_csv("birds.csv",show_col_types = FALSE)
