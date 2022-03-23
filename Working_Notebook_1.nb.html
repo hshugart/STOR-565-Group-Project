@@ -217,8 +217,12 @@ pre code {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2V0d2QoXCJDOi9Vc2Vycy9IZW5yeSBTaHVnYXJ0L0Rlc2t0b3AvU1RPUiA1NjUvYXJjaGl2ZS9cIilcbmJpcmRzIDwtIHJlYWRfY3N2KFwiYmlyZHMuY3N2XCIsc2hvd19jb2xfdHlwZXMgPSBGQUxTRSlcbmJpcmRzJGRhdGFfc2V0ID0gYmlyZHNbLDRdXG5uX2JpcmRzID0gYmlyZHMgJT4lIGZpbHRlcihkYXRhX3NldCA9PSBcInRyYWluXCIpICU+JSBncm91cF9ieShsYWJlbHMpICU+JSBzdW1tYXJpemUobiA9IG4oKSkgJT4lIGFycmFuZ2UoZGVzYyhuKSlcbmJpcmRzX3RyYWluID0gYmlyZHMgJT4lIGZpbHRlcihkYXRhX3NldCA9PSBcInRyYWluXCIpXG5gYGAifQ== -->
-<pre class="r"><code>setwd(&quot;C:/Users/Henry Shugart/Desktop/STOR 565/archive/&quot;)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBTZXQgd29ya2luZyBkaXJlY3RvcnkgZm9yIGRpZmZlcmVudCB1c2Vyc1xuc2V0d2QoXCJDOi9Vc2Vycy9jYW0zOTEvRG9jdW1lbnRzL0dpdEh1Yi9TVE9SLTU2NS1Hcm91cC1Qcm9qZWN0L1wiKSAjIENhbVxuc2V0d2QoXCJDOi9Vc2Vycy9jYW0zOTEvRG9jdW1lbnRzL0dpdEh1Yi9TVE9SLTU2NS1Hcm91cC1Qcm9qZWN0L1wiKSAjIEhlbnJ5XG5zZXR3ZChcIkM6L1VzZXJzL2NhbTM5MS9Eb2N1bWVudHMvR2l0SHViL1NUT1ItNTY1LUdyb3VwLVByb2plY3QvXCIpICMgSm9oYW5uYVxuXG5iaXJkcyA8LSByZWFkX2NzdihcImJpcmRzLmNzdlwiLHNob3dfY29sX3R5cGVzID0gRkFMU0UpXG5iaXJkcyRkYXRhX3NldCA9IGJpcmRzWyw0XVxubl9iaXJkcyA9IGJpcmRzICU+JSBmaWx0ZXIoZGF0YV9zZXQgPT0gXCJ0cmFpblwiKSAlPiUgZ3JvdXBfYnkobGFiZWxzKSAlPiUgc3VtbWFyaXplKG4gPSBuKCkpICU+JSBhcnJhbmdlKGRlc2MobikpXG5iaXJkc190cmFpbiA9IGJpcmRzICU+JSBmaWx0ZXIoZGF0YV9zZXQgPT0gXCJ0cmFpblwiKVxuYGBgIn0= -->
+<pre class="r"><code># Set working directory for different users
+setwd(&quot;C:/Users/cam391/Documents/GitHub/STOR-565-Group-Project/&quot;) # Cam
+setwd(&quot;C:/Users/cam391/Documents/GitHub/STOR-565-Group-Project/&quot;) # Henry
+setwd(&quot;C:/Users/cam391/Documents/GitHub/STOR-565-Group-Project/&quot;) # Johanna
+
 birds &lt;- read_csv(&quot;birds.csv&quot;,show_col_types = FALSE)
 birds$data_set = birds[,4]
 n_birds = birds %&gt;% filter(data_set == &quot;train&quot;) %&gt;% group_by(labels) %&gt;% summarize(n = n()) %&gt;% arrange(desc(n))
@@ -226,7 +230,7 @@ birds_train = birds %&gt;% filter(data_set == &quot;train&quot;)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7cn0NCnNldHdkKCJDOi9Vc2Vycy9IZW5yeSBTaHVnYXJ0L0Rlc2t0b3AvU1RPUiA1NjUvYXJjaGl2ZS8iKQ0KYmlyZHMgPC0gcmVhZF9jc3YoImJpcmRzLmNzdiIsc2hvd19jb2xfdHlwZXMgPSBGQUxTRSkNCmJpcmRzJGRhdGFfc2V0ID0gYmlyZHNbLDRdDQpuX2JpcmRzID0gYmlyZHMgJT4lIGZpbHRlcihkYXRhX3NldCA9PSAidHJhaW4iKSAlPiUgZ3JvdXBfYnkobGFiZWxzKSAlPiUgc3VtbWFyaXplKG4gPSBuKCkpICU+JSBhcnJhbmdlKGRlc2MobikpDQpiaXJkc190cmFpbiA9IGJpcmRzICU+JSBmaWx0ZXIoZGF0YV9zZXQgPT0gInRyYWluIikNCmBgYGBgYA0K</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7cn0NCiMgU2V0IHdvcmtpbmcgZGlyZWN0b3J5IGZvciBkaWZmZXJlbnQgdXNlcnMNCnNldHdkKCJDOi9Vc2Vycy9jYW0zOTEvRG9jdW1lbnRzL0dpdEh1Yi9TVE9SLTU2NS1Hcm91cC1Qcm9qZWN0LyIpICMgQ2FtDQpzZXR3ZCgiQzovVXNlcnMvY2FtMzkxL0RvY3VtZW50cy9HaXRIdWIvU1RPUi01NjUtR3JvdXAtUHJvamVjdC8iKSAjIEhlbnJ5DQpzZXR3ZCgiQzovVXNlcnMvY2FtMzkxL0RvY3VtZW50cy9HaXRIdWIvU1RPUi01NjUtR3JvdXAtUHJvamVjdC8iKSAjIEpvaGFubmENCg0KYmlyZHMgPC0gcmVhZF9jc3YoImJpcmRzLmNzdiIsc2hvd19jb2xfdHlwZXMgPSBGQUxTRSkNCmJpcmRzJGRhdGFfc2V0ID0gYmlyZHNbLDRdDQpuX2JpcmRzID0gYmlyZHMgJT4lIGZpbHRlcihkYXRhX3NldCA9PSAidHJhaW4iKSAlPiUgZ3JvdXBfYnkobGFiZWxzKSAlPiUgc3VtbWFyaXplKG4gPSBuKCkpICU+JSBhcnJhbmdlKGRlc2MobikpDQpiaXJkc190cmFpbiA9IGJpcmRzICU+JSBmaWx0ZXIoZGF0YV9zZXQgPT0gInRyYWluIikNCmBgYGBgYA0K</div>
 
 
 

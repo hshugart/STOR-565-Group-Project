@@ -4,7 +4,11 @@ output: html_notebook
 ---
 
 ```{r}
-setwd("C:/Users/Henry Shugart/Desktop/STOR 565/archive/")
+# Set working directory for different users
+setwd("C:/Users/cam391/Documents/GitHub/STOR-565-Group-Project/") # Cam
+setwd("C:/Users/cam391/Documents/GitHub/STOR-565-Group-Project/") # Henry
+setwd("C:/Users/cam391/Documents/GitHub/STOR-565-Group-Project/") # Johanna
+
 birds <- read_csv("birds.csv",show_col_types = FALSE)
 birds$data_set = birds[,4]
 n_birds = birds %>% filter(data_set == "train") %>% group_by(labels) %>% summarize(n = n()) %>% arrange(desc(n))
