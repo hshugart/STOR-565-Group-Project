@@ -3,14 +3,98 @@ title: "R Notebook"
 output: html_notebook
 ---
 
-```{r}
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = 'D:/STOR 565 Project/')
 # Set working directory for different users
-setwd("C:/Users/cam391/Documents/GitHub/STOR-565-Group-Project/") # Cam
-setwd("C:/Users/Henry Shugart/Documents/GitHub/STOR-565-Group-Project/") # Henry
-setwd("C:/Users/Joe/Documents/GitHub/STOR-565-Group-Project/") # Johanna
+# setwd("D:/STOR 565 Project/") # Cam
+# setwd("C:/Users/Henry Shugart/Documents/GitHub/STOR-565-Group-Project/") # Henry
+# setwd("C:/Users/Joe/Documents/GitHub/STOR-565-Group-Project/") # Johanna
+```
 
-birds <- read_csv("birds.csv",show_col_types = FALSE)
+# Here we download the needed packages and load our data
+
+```{r}
+library(tidyverse)
+library(dplyr)
+```
+
+```{r}
+birds = read_csv("birds.csv", show_col_types = FALSE)
 birds$data_set = birds[,4]
 n_birds = birds %>% filter(data_set == "train") %>% group_by(labels) %>% summarize(n = n()) %>% arrange(desc(n))
 birds_train = birds %>% filter(data_set == "train")
-``````
+```
+
+```{r}
+# Explore dimensions of images
+library(jpeg)
+dim(readJPEG(birds_train$filepaths[1]))
+```
+Here we see that our images are 224 by 224 by 3, therefore we will have an input layer of size 150528.
+
+Create list of raw data for training
+```{r}
+x_train = lapply(birds_train$filepaths[1:525], readJPEG)
+
+x_unlisted = unlist(x_train, recursive = TRUE)
+
+x_train_final = c()
+
+for (i in 1:525) {
+  newVec = c(c(x_unlisted[(i+150528*i-150528):(150528*i)]))
+  
+  x_train_final[i] = newVec
+}
+```
+
+```{r}
+x_train_final[1]
+```
+
+
+# Now lets set up a neural network using Keras
+
+```{r}
+install.packages(keras)
+library(keras)
+```
+
+```{r}
+model <- keras_model_sequential() 
+model %>% 
+  layer_flatten(input_shape = c(224, 224, 3)) %>%
+  layer_dense(units = 256, activation = 'relu') %>% 
+  layer_dropout(rate = 0.4) %>% 
+  layer_dense(units = 128, activation = 'relu') %>%
+  layer_dropout(rate = 0.3) %>%
+  layer_dense(units = 3, activation = 'softmax')
+```
+
+```{r}
+model %>% compile(
+  loss = 'categorical_crossentropy',
+  optimizer = optimizer_rmsprop(),
+  metrics = c('accuracy')
+)
+```
+
+```{r}
+history <- model %>% fit(
+  x_train, birds_train$labels, 
+  epochs = 30, batch_size = 105, 
+  validation_split = 0.2
+)
+```
+
+```{r}
+plot(history)
+```
+
+
+```{r}
+typeof(x_train)
+```
+
+
+
