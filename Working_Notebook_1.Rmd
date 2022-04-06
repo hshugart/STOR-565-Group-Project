@@ -37,21 +37,14 @@ Create list of raw data for training
 ```{r}
 x_train = lapply(birds_train$filepaths[1:525], readJPEG)
 
-x_unlisted = unlist(x_train, recursive = TRUE)
 
-x_train_final = c()
-
-for (i in 1:525) {
-  newVec = c(c(x_unlisted[(i+150528*i-150528):(150528*i)]))
-  
-  x_train_final[i] = newVec
-}
+# for (i in 1:525) {
+#   x_train[i] = unlist(x_train[i])
+# }
 ```
-
 ```{r}
-x_train_final[1]
+x_train[0][]
 ```
-
 
 # Now lets set up a neural network using Keras
 
@@ -81,7 +74,7 @@ model %>% compile(
 
 ```{r}
 history <- model %>% fit(
-  x_train, birds_train$labels, 
+  x_train, birds_train$`class index`, 
   epochs = 30, batch_size = 105, 
   validation_split = 0.2
 )
